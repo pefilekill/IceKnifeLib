@@ -56,7 +56,7 @@ typedef void                *PVOID;
 typedef unsigned char      byte;
 typedef BYTE               *PBYTE;
 
-
+typedef int                 SOCKET;
 typedef struct _FILETIME {
     DWORD dwLowDateTime;
     DWORD dwHighDateTime;
