@@ -18,6 +18,7 @@
 #include <arpa/inet.h>
 #include <netdb.h>
 #include <regex>
+#include <iostream>
 //#include "CHttp/CHttpMutiUtil.h"
 
 #define  IDE_ATAPI_IDENTIFY				0xA1			//  Returns ID sector for ATAPI.
@@ -523,12 +524,37 @@ string	CPubFunc::GetExePath()
     strExeDir = szLong;
     strExeDir = strExeDir.Left(strExeDir.ReverseFind('\\')+1);
 #else
-    char szBuf[_MAX_PATH] = { 0 };
-    if( readlink("/proc/self/exe", szBuf, _MAX_PATH) > 0)
+    char szParentDir[_MAX_PATH] = {0};
+    if (getcwd(szParentDir, _MAX_PATH) != NULL)
     {
-        strExePath = szBuf;
-        strExePath = strExePath.substr(0, strExePath.rfind("/"));
+        string strParentDir = szParentDir;
+        char szPs[_MAX_PATH] = {0};
+        string strPid = Int2String(getpid());
+        sprintf(szPs, "ps aux | grep %s", strPid.c_str());
+        FILE *fp = popen(szPs,"r");
+        if (fp != NULL)
+        {
+            char szBuf[10240] = {0};
+            while (NULL != fgets(szBuf, 10240 -1, fp))
+            {
+                if (strstr(szBuf, szParentDir) != NULL && strstr(szBuf, strPid.c_str()) != NULL)
+                {
+                    string strFull = szBuf;
+                    int iStart = strFull.find(strParentDir);
+                    int iPathLen = strlen(szBuf) - iStart ;
+                    strExePath = strFull.substr(iStart , iPathLen);
+                    strExePath = Replace(strExePath, "\n", "");
+                    strExePath = Replace(strExePath, "\r", "");
+                    break;
+                }
+                memset(szBuf, 0, 10240);
+            }
+            pclose(fp);
+        }
     }
+
+
+
 #endif
     return strExePath;
 }
@@ -721,20 +747,11 @@ string CPubFunc::ReadFileText(string strFilePath) {
 
 //
 void  CPubFunc::PrintString(string strPara) {
-    string strTemp = Replace(strPara, "\r", "");
-    //每次打印512长度
-    int iLoop = 0, iStartPos = 0;
-    int iPerLen = 512;
-    while ((iLoop + 1)* iPerLen < strPara.length()) {
-        string strPrint = strPara.substr(iLoop * iPerLen, iPerLen);
-        //LOGE("-->Index:%d   %s<--", iLoop, strPrint.c_str());
-        iLoop ++;
-    }
-    if ((iLoop + 1)* iPerLen >= strPara.length()) {
-        string strPrint = strPara.substr(iLoop * iPerLen, strPara.length() - iLoop * iPerLen);
-        //LOGE("-->Index:%d   %s<--", iLoop, strPrint.c_str());
+#ifdef __OS_WINDOWS__
 
-    }
+#else
+    std::cout << strPara << std::endl;
+#endif
 }
 //
 string CPubFunc::Replace(string strOriData, string strKey, string strValue) {
