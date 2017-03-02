@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/Public/encode/aes/CAesUtil.cpp" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Public/encode/des/CDesUtil.cpp" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/include/CAesUtil.h" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/include/CDesUtil.h" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/include/CDialVpn.h" charset="UTF-8" />
+  </component>
+</project>
