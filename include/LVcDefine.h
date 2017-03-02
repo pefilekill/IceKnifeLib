@@ -35,6 +35,8 @@ typedef unsigned long long  ULONGLONG;
 typedef ULONGLONG           *PULONGLONG;
 typedef unsigned long       ULONG;
 typedef int                 INT;
+typedef signed char INT8;
+typedef unsigned  char UINT8;
 typedef unsigned int        UINT;
 typedef unsigned int        *PUINT;
 typedef void                VOID;
