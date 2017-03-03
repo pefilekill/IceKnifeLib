@@ -5,7 +5,7 @@
 #ifndef ICEKNIFELIB_PREDEFINE_H
 #define ICEKNIFELIB_PREDEFINE_H
 
-
+#include "json.h"
 
 
 // 路径的分隔符定义
@@ -17,6 +17,10 @@
 
 #include "LVcDefine.h"
 #endif
+
+typedef Json::Value     _JsonValue;
+typedef Json::Reader    _JsonReader;
+typedef Json::FastWriter     _JsonFastWriter;
 
 
 
