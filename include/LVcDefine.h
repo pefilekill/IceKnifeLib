@@ -42,6 +42,7 @@ typedef unsigned int        *PUINT;
 typedef void                VOID;
 typedef long long           INT64;
 typedef unsigned long long  UINT64;
+typedef short               __int16;
 typedef char               *LPSTR;
 typedef const char         *LPCSTR;
 typedef wchar_t            WCHAR;
