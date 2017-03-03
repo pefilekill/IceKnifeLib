@@ -1240,18 +1240,46 @@ bool CPubFunc::IsIPV6(string strIp) {
 //根据域名获取IP stirng
 string CPubFunc::GetHostStringByName(string strDomainName) {
     string strRet = "";
-    struct hostent *server = NULL;
-    server = gethostbyname(strDomainName.c_str());
-    if (server != NULL) {
-        PrintString("gethostname 成功");
-        char szHost[16] = {0};
-        struct in_addr **addr_list = (struct in_addr **) server->h_addr_list;
-        char *szIp = inet_ntoa(*addr_list[0]);
-        if (strlen(szIp) <= 16)
-            strRet = szIp;
-    } else {
-        PrintString("gethostname 失败");
+    struct addrinfo *answer, hint, *curr;
+    bzero(&hint, sizeof(hint));
+    hint.ai_family = AF_UNSPEC;
+    hint.ai_socktype = SOCK_STREAM;
+    hint.ai_protocol = IPPROTO_TCP;
+    //hint.ai_flags = AI_DEFAULT;  //IOS务必加   否则有可能出现v4和v6同时出现的情况  Android务必不加，否则有可能出现解析失败
+    char ipstr2[128] = {0};
+    struct sockaddr_in  *sockaddr_ipv4;
+    struct sockaddr_in6 *sockaddr_ipv6;
+
+    int ret = getaddrinfo(strDomainName.c_str(), NULL,&hint, &answer);
+    PrintString("getaddrinfo:" + strDomainName);
+    if (ret != 0) {
+        PrintString("getaddrinfo失败:" + Int2String(ret) + "    host:" + strDomainName);
+        return "";
     }
+//    EAI_SOCKTYPE
+    bool bGetSuc = false;
+    for (curr = answer; curr != NULL; curr = curr->ai_next) {
+        switch (curr->ai_family){
+            case AF_UNSPEC:
+                //do something here
+                break;
+            case AF_INET:
+                sockaddr_ipv4 = reinterpret_cast<struct sockaddr_in *>( curr->ai_addr);
+                inet_ntop(AF_INET, &sockaddr_ipv4->sin_addr, ipstr2,sizeof(ipstr2));
+                strRet.append(ipstr2, strlen(ipstr2));
+                bGetSuc = true;
+                break;
+            case AF_INET6:
+                sockaddr_ipv6 = reinterpret_cast<struct sockaddr_in6 *>( curr->ai_addr);
+                inet_ntop(AF_INET6, &sockaddr_ipv6->sin6_addr, ipstr2,sizeof(ipstr2));
+                strRet.append(ipstr2, 128);
+                bGetSuc = true;
+                break;
+        }
+        if (bGetSuc)
+            break;
+    }
+    freeaddrinfo(answer);
     return strRet;
 }
 //
