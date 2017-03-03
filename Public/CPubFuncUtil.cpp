@@ -1352,3 +1352,8 @@ string CPubFunc::MakeLower(string strSrc) {
     transform(strSrc.begin(), strSrc.end(), strSrc.begin(), ::tolower);
     return strSrc;
 }
+
+string CPubFunc::MakeUpper(string strSrc) {
+    transform(strSrc.begin(), strSrc.end(), strSrc.begin(), ::toupper);
+    return strSrc;
+}

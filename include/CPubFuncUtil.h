@@ -263,6 +263,8 @@ public:
     static int64_t String2Long(string strPara);
     //
     static string MakeLower(string strSrc);
+    //
+    static string MakeUpper(string strSrc);
 
 
 protected:
