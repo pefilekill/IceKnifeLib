@@ -1319,3 +1319,8 @@ int64_t CPubFunc::String2Long(string strPara) {
     int64_t i64 = strtoll(strPara.c_str(), NULL, 10);
     return i64;
 }
+
+string CPubFunc::MakeLower(string strSrc) {
+    transform(strSrc.begin(), strSrc.end(), strSrc.begin(), ::tolower);
+    return strSrc;
+}
