@@ -1357,3 +1357,16 @@ string CPubFunc::MakeUpper(string strSrc) {
     transform(strSrc.begin(), strSrc.end(), strSrc.begin(), ::toupper);
     return strSrc;
 }
+//
+string CPubFunc::GetRandNumber(int iNumLen)
+{
+    static int iEnsure = rand();
+    srand(time(NULL) + iEnsure);
+    iEnsure = rand();
+    string strRet = "";
+    while(strRet.length() < iNumLen) {
+        strRet += Int2String(rand());
+    }
+    strRet = strRet.substr(0, iNumLen);
+    return strRet;
+}

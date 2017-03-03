@@ -265,7 +265,8 @@ public:
     static string MakeLower(string strSrc);
     //
     static string MakeUpper(string strSrc);
-
+    //
+    static string GetRandNumber(int iNumLen);
 
 protected:
 private:
