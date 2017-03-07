@@ -19,6 +19,7 @@
 #include <netdb.h>
 #include <regex>
 #include <iostream>
+#include <codecvt>
 //#include "CHttp/CHttpMutiUtil.h"
 
 #define  IDE_ATAPI_IDENTIFY				0xA1			//  Returns ID sector for ATAPI.
@@ -1369,4 +1370,24 @@ string CPubFunc::GetRandNumber(int iNumLen)
     }
     strRet = strRet.substr(0, iNumLen);
     return strRet;
+}
+//参数  真正的utf8字符串
+string CPubFunc::Utf82Unicode(string strUtf8)
+{
+    string strUnicode = "";
+    std::wstring_convert<std::codecvt_utf8<char16_t>, char16_t> utf8_ucs2_cvt;
+    u16string ucs2_cvt_str = utf8_ucs2_cvt.from_bytes(strUtf8); // utf-8 to ucs2
+    char *szBuf = (char*)ucs2_cvt_str.c_str();
+    int iLen = strlen(szBuf);
+    strUnicode.append(szBuf, iLen);
+    return strUnicode;
+}
+//参数 真正的unicode字符串
+string CPubFunc::Unicode2Utf8(string strUnicode)
+{
+    char16_t *szUnicode = (char16_t*)strUnicode.c_str();
+    u16string u16Unicode = szUnicode;
+    std::wstring_convert<std::codecvt_utf8<char16_t>, char16_t> utf8_ucs2_cvt;
+    string strUtf8 = utf8_ucs2_cvt.to_bytes(u16Unicode); // ucs2 -> utf8
+    return strUtf8;
 }

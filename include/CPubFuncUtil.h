@@ -267,6 +267,11 @@ public:
     static string MakeUpper(string strSrc);
     //
     static string GetRandNumber(int iNumLen);
+    //参数  真正的utf8字符串
+    static string Utf82Unicode(string strUtf8);
+    //参数 真正的unicode字符串
+    static string Unicode2Utf8(string strUnicode);
+
 
 protected:
 private:
