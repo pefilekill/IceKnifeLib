@@ -17,51 +17,51 @@
 //#define max(a,b)           (((a) > (b)) ? (a) : (b))
 //#define min(a,b)            (((a) < (b)) ? (a) : (b))
 
-typedef int                        BOOL;
-typedef unsigned char       BYTE;
-typedef float                     FLOAT;
-typedef FLOAT                  *PFLOAT;
-typedef char                      CHAR;
-typedef unsigned char       UCHAR;
-typedef unsigned char       *PUCHAR;
-typedef short                    SHORT;
-typedef unsigned short      USHORT;
-typedef unsigned short      *PUSHORT;
-typedef long                      LONG;
-typedef unsigned short      WORD;
-typedef unsigned long       DWORD;
-typedef long long              LONGLONG;
-typedef unsigned long long  ULONGLONG;
-typedef ULONGLONG           *PULONGLONG;
-typedef unsigned long       ULONG;
-typedef int                 INT;
+typedef int BOOL;
+typedef unsigned char BYTE;
+typedef float FLOAT;
+typedef FLOAT *PFLOAT;
+typedef char CHAR;
+typedef unsigned char UCHAR;
+typedef unsigned char *PUCHAR;
+typedef short SHORT;
+typedef unsigned short USHORT;
+typedef unsigned short *PUSHORT;
+typedef long LONG;
+typedef unsigned short WORD;
+typedef unsigned long DWORD;
+typedef long long LONGLONG;
+typedef unsigned long long ULONGLONG;
+typedef ULONGLONG *PULONGLONG;
+typedef unsigned long ULONG;
+typedef int INT;
 typedef signed char INT8;
-typedef unsigned  char UINT8;
-typedef unsigned int        UINT;
-typedef unsigned int        *PUINT;
-typedef void                VOID;
-typedef long long           INT64;
-typedef unsigned long long  UINT64;
-typedef short               __int16;
-typedef char               *LPSTR;
-typedef const char         *LPCSTR;
-typedef wchar_t            WCHAR;
-typedef WCHAR              *LPWSTR;
-typedef const WCHAR        *LPCWSTR;
-typedef DWORD              *LPDWORD;
-typedef unsigned long      UINT_PTR;
-typedef UINT_PTR           SIZE_T;
-typedef LONGLONG           USN;
-typedef BYTE               BOOLEAN;
-typedef void                *PVOID;
-typedef unsigned char      byte;
-typedef BYTE               *PBYTE;
+typedef unsigned char UINT8;
+typedef unsigned int UINT;
+typedef unsigned int *PUINT;
+typedef void VOID;
+typedef long long INT64;
+typedef unsigned long long UINT64;
+typedef short __int16;
+typedef char *LPSTR;
+typedef const char *LPCSTR;
+typedef wchar_t WCHAR;
+typedef WCHAR *LPWSTR;
+typedef const WCHAR *LPCWSTR;
+typedef DWORD *LPDWORD;
+typedef unsigned long UINT_PTR;
+typedef UINT_PTR SIZE_T;
+typedef LONGLONG USN;
+typedef BYTE BOOLEAN;
+typedef void *PVOID;
+typedef unsigned char byte;
+typedef BYTE *PBYTE;
 
-typedef int                 SOCKET;
+typedef int SOCKET;
 typedef struct _FILETIME {
     DWORD dwLowDateTime;
     DWORD dwHighDateTime;
-}    FILETIME;
+} FILETIME;
 
 typedef union _ULARGE_INTEGER {
     struct {
