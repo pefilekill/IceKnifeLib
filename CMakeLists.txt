@@ -166,6 +166,6 @@ set(SOURCE_FILES
         Third/openssl/include/openssl/x509v3.h
 
 
-        Public/Notification/NotificationCenter.h
+        include/NotificationCenter.h
         include/ST_Notification.h)
 add_library(IceKnifeLib ${SOURCE_FILES})
