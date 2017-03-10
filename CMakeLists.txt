@@ -42,6 +42,7 @@ set(SOURCE_FILES
         include/json/version.h
         include/ConcurrentMap.h
         include/ConcurrentVector.h
+        include/INotification.h
 
         Public/CPubFuncUtil.cpp
         Public/CUtil.cpp
@@ -165,9 +166,6 @@ set(SOURCE_FILES
         Third/openssl/include/openssl/x509v3.h
 
 
-        Public/Notification/INotification.cpp
-        Public/Notification/INotification.h
-        Public/Notification/NotificationCenter.cpp
         Public/Notification/NotificationCenter.h
-)
+        include/ST_Notification.h)
 add_library(IceKnifeLib ${SOURCE_FILES})

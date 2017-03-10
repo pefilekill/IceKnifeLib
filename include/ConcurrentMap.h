@@ -23,6 +23,14 @@ public:
     ~ConcurrentMap() {
         pthread_mutex_destroy(&m_mtxMap);
     }
+    //是否包含
+    bool IsExist(TKEY keyCheck){
+        bool bExist = false;
+        pthread_mutex_lock(&m_mtxMap);
+        bExist = (find(m_vecKey.begin(), m_vecKey.end(), keyCheck) == m_vecKey.end());
+        pthread_mutex_unlock(&m_mtxMap);
+        return bExist;
+    }
 
     //插入
     void Insert(TKEY keyPara, TVALUE valuePara) {
@@ -55,6 +63,16 @@ public:
         auto atRet = m_vecValue[iIndex];
         pthread_mutex_unlock(&m_mtxMap);
         return atRet;
+    }
+    // 移除
+    void Remove(TKEY keyPara){
+        pthread_mutex_lock(&m_mtxMap);
+        auto atSearchKey = find(m_vecKey.begin(), m_vecKey.end(), keyPara);
+        auto atSearchValue = atSearchKey - m_vecKey.begin() + m_vecValue.begin(); //这里可能会有波浪线  不影响
+        m_vecKey.erase(atSearchKey);
+        m_vecValue.erase(atSearchValue);
+        pthread_mutex_unlock(&m_mtxMap);
+        return ;
     }
 
 private:
