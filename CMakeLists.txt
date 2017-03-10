@@ -30,6 +30,18 @@ set(SOURCE_FILES
         include/CDialVpn.h
         include/CAesUtil.h
         include/CRsaUtil.h
+        include/json/assertions.h
+        include/json/autolink.h
+        include/json/config.h
+        include/json/features.h
+        include/json/forwards.h
+        include/json.h
+        include/json/reader.h
+        include/json/value.h
+        include/json/writer.h
+        include/json/version.h
+        include/ConcurrentMap.h
+        include/ConcurrentVector.h
 
         Public/CPubFuncUtil.cpp
         Public/CUtil.cpp
@@ -39,20 +51,10 @@ set(SOURCE_FILES
         Public/tinyxml/tinyxml2.cpp
 
         Public/json/allocator.h
-        Public/json/assertions.h
-        Public/json/autolink.h
-        Public/json/config.h
-        Public/json/features.h
-        Public/json/forwards.h
-        Public/json/json.h
         Public/json/json_reader.cpp
         Public/json/json_tool.h
         Public/json/json_value.cpp
         Public/json/json_writer.cpp
-        Public/json/reader.h
-        Public/json/value.h
-        Public/json/writer.h
-        Public/json/version.h
 
         Public/encode/md5/md5.cpp
         Public/encode/md5/md5.h
@@ -163,5 +165,9 @@ set(SOURCE_FILES
         Third/openssl/include/openssl/x509v3.h
 
 
-        )
+        Public/Notification/INotification.cpp
+        Public/Notification/INotification.h
+        Public/Notification/NotificationCenter.cpp
+        Public/Notification/NotificationCenter.h
+)
 add_library(IceKnifeLib ${SOURCE_FILES})
