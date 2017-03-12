@@ -29,22 +29,11 @@
 
 #pragma warning(disable:4293)
 
-bool CPubFunc::m_bSrand = false;
-
 #pragma comment(lib, "WS2_32.lib")
 #pragma comment(lib, "Rpcrt4.lib")
 #pragma comment(lib,"Iphlpapi.lib")
 #pragma comment(lib, "wininet.lib")
 
-//
-void CPubFunc::DoSrand()
-{
-	if (!m_bSrand)
-	{
-		srand((unsigned int)time(NULL));
-		m_bSrand = true;
-	}
-}
 
 #ifdef __OS_WINDOWS__
 //
@@ -1125,8 +1114,6 @@ DWORD CPubFunc::ARM_LSRS(DWORD dwPara1, DWORD dwOffset)
 }
 DWORD CPubFunc::ARM_lrand48()
 {
-	return 3;
-	DoSrand();
 	DWORD dwRet = rand() * rand();  //十六进制从0x1 - 0xFF
 	return dwRet;
 }

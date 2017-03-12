@@ -35,10 +35,6 @@ class CPubFunc {
 public:
     CPubFunc() {};
 
-    //设置随机数种子
-    static void DoSrand();
-
-
     //获取程序目录
     static string GetExeFolder();
 
@@ -275,7 +271,6 @@ public:
 
 protected:
 private:
-    static bool m_bSrand;
 
 };
 
