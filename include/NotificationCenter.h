@@ -24,7 +24,8 @@ public:
     }
 
     // 发送消息 参数 pData: 如果观察者不存在则在这里就删除  如果存在  则在响应完之后删除
-    static void PostMessage(string strObserverKey, PVOID pData){
+    template <typename TMsgData>
+    static void PostMessage(string strObserverKey, TMsgData pData){
         //直接创建线程
         if (m_mapTable.IsExist(strObserverKey)){
             ST_Notification *pStNoti = new ST_Notification();
@@ -47,12 +48,11 @@ public:
             ST_Notification *stValue = (ST_Notification*)pPara;
             if (stValue->m_strRespObserverKey.empty() == false){
                 auto atObserver = m_mapTable.GetValue(stValue->m_strRespObserverKey);
-                atObserver.OnResponseNomalNotification(*stValue);
+                atObserver->OnResponseNomalNotification(*stValue);
             }
-            if (stValue->m_pData != NULL)
-                delete pPara;
             delete stValue;
         }
+        return NULL;
     }
 
 
@@ -61,6 +61,6 @@ private:
     static ConcurrentMap<string, TNotification> m_mapTable;
 
 };
-
+template <typename TNotification> ConcurrentMap<string, TNotification> NotificationCenter<TNotification>::m_mapTable;
 
 #endif //ICEKNIFELIB_NOTIFICATIONCENTER_H

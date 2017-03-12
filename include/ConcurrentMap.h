@@ -27,7 +27,7 @@ public:
     bool IsExist(TKEY keyCheck){
         bool bExist = false;
         pthread_mutex_lock(&m_mtxMap);
-        bExist = (find(m_vecKey.begin(), m_vecKey.end(), keyCheck) == m_vecKey.end());
+        bExist = (find(m_vecKey.begin(), m_vecKey.end(), keyCheck) != m_vecKey.end());
         pthread_mutex_unlock(&m_mtxMap);
         return bExist;
     }
