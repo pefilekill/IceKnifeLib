@@ -35,6 +35,10 @@
 #pragma comment(lib, "wininet.lib")
 
 
+pthread_mutex_t CPubFunc::m_mtxLog;
+
+CPubFunc g_pfMtx;
+
 #ifdef __OS_WINDOWS__
 //
 CString CPubFunc::GetCommAppDataPath()
@@ -737,11 +741,13 @@ string CPubFunc::ReadFileText(string strFilePath) {
 
 //
 void  CPubFunc::PrintString(string strPara) {
+    pthread_mutex_lock(&m_mtxLog);
 #ifdef __OS_WINDOWS__
 
 #else
     std::cout << strPara << std::endl;
 #endif
+    pthread_mutex_unlock(&m_mtxLog);
 }
 //
 string CPubFunc::Replace(string strOriData, string strKey, string strValue) {

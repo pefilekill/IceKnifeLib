@@ -33,7 +33,9 @@ enum enumSysName {
 
 class CPubFunc {
 public:
-    CPubFunc() {};
+    CPubFunc() {
+        pthread_mutex_init(&m_mtxLog, NULL);
+    };
 
     //获取程序目录
     static string GetExeFolder();
@@ -271,6 +273,8 @@ public:
 
 protected:
 private:
+    //
+    static pthread_mutex_t m_mtxLog;
 
 };
 
