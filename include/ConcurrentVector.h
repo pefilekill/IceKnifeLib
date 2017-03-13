@@ -40,7 +40,7 @@ public:
     }
 
     //获取指定index的值
-    bool GetIndexAt(int iIndex, TVALUE &tvOut) {
+    bool GetValueAt(int iIndex, TVALUE &tvOut) {
         bool bRet = false;
         pthread_mutex_lock(&m_mtxVector);
         if (m_vecData.size() > iIndex){
