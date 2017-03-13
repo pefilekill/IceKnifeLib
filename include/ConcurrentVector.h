@@ -51,6 +51,10 @@ public:
         return bRet;
     }
 
+    //获取首个
+    bool GetFirstValue(TVALUE &tvOut){
+        return GetValueAt(0, tvOut);
+    }
 
 private:
     //
