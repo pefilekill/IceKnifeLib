@@ -1379,7 +1379,8 @@ string CPubFunc::Unicode2Utf8(string strUnicode)
     return strUtf8;
 }
 
-bool CPubFunc::CloseSocket(SOCKET sock) {
+bool CPubFunc::CloseSocket(SOCKET &sock) {
     shutdown(sock, SHUT_RDWR);//SD_BOTH
+    sock = 0;
     return false;
 }

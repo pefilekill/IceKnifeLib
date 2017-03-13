@@ -227,7 +227,7 @@ public:
     //
     static bool IsSocketClosed(int iSock);
     // 关闭socket
-    static bool CloseSocket(SOCKET sock);
+    static bool CloseSocket(SOCKET &sock);
 
 
     //判断是否是ip
