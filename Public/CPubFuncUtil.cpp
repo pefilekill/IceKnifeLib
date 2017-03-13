@@ -1007,12 +1007,6 @@ bool CPubFunc::WriteString2File(string strWite, string strFilePath)
 	return false;
 }
 //
-void CPubFunc::GracefulCloseSocket(int sockPara)
-{
-	shutdown(sockPara, SHUT_RDWR);//SD_BOTH
-}
-
-//
 void CPubFunc::AppendBigendian(string &strSrc, DWORD dwValue)
 {
 	char *szValue= (char*) &dwValue;
@@ -1383,4 +1377,9 @@ string CPubFunc::Unicode2Utf8(string strUnicode)
     std::wstring_convert<std::codecvt_utf8<char16_t>, char16_t> utf8_ucs2_cvt;
     string strUtf8 = utf8_ucs2_cvt.to_bytes(u16Unicode); // ucs2 -> utf8
     return strUtf8;
+}
+
+bool CPubFunc::CloseSocket(SOCKET sock) {
+    shutdown(sock, SHUT_RDWR);//SD_BOTH
+    return false;
 }

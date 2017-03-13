@@ -173,9 +173,6 @@ public:
     //等待
     static void NewSleep(int64_t i64WaitTime);
 
-    //优雅关闭socket
-    static void GracefulCloseSocket(int sockPara);
-
     //获取时间的值
     static INT64 currentTimeMillis();
 
@@ -229,6 +226,9 @@ public:
 
     //
     static bool IsSocketClosed(int iSock);
+    // 关闭socket
+    static bool CloseSocket(SOCKET sock);
+
 
     //判断是否是ip
     static bool IsIPAddress(string strPara);
