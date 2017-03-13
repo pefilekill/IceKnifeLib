@@ -55,6 +55,14 @@ public:
     bool GetFirstValue(TVALUE &tvOut){
         return GetValueAt(0, tvOut);
     }
+    //删除指定的值
+    void RemoveAt(int iIndex){
+        pthread_mutex_lock(&m_mtxVector);
+        if (m_vecData.size() > iIndex){
+            m_vecData.erase(m_vecData.begin() + iIndex);
+        }
+        pthread_mutex_unlock(&m_mtxVector);
+    }
 
 private:
     //
