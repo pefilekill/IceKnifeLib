@@ -32,15 +32,23 @@ public:
 
     // 获取大小
     int GetSize() {
-        return m_vecData.size();
+        int iSize = 0;
+        pthread_mutex_lock(&m_mtxVector);
+        iSize = m_vecData.size();
+        pthread_mutex_unlock(&m_mtxVector);
+        return iSize;
     }
 
     //获取指定index的值
-    TVALUE GetIndexAt(int iIndex) {
+    bool GetIndexAt(int iIndex, TVALUE &tvOut) {
+        bool bRet = false;
         pthread_mutex_lock(&m_mtxVector);
-        auto atRet = m_vecData[iIndex];
+        if (m_vecData.size() > iIndex){
+            tvOut = m_vecData[iIndex];
+            bRet = true;
+        }
         pthread_mutex_unlock(&m_mtxVector);
-        return atRet;
+        return bRet;
     }
 
 
