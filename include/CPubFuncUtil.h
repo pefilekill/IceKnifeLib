@@ -221,6 +221,9 @@ public:
     //
     static bool ConnectServer(string strHost, int iPort, int &iOutSock);
 
+    // 设置超时时间  单位秒
+    static void SetSocketSendTimeOut(SOCKET sockPara, int iTimeOut);
+
     //
     static string Convert2Ip(string strPara);
 
