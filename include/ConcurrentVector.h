@@ -50,6 +50,14 @@ public:
         pthread_mutex_unlock(&m_mtxVector);
         return bRet;
     }
+    // 设置值
+    void SetValueAt(int iIndex, TVALUE tvPara){
+        pthread_mutex_lock(&m_mtxVector);
+        if (m_vecData.size() > iIndex){
+             m_vecData[iIndex] = tvPara;
+        }
+        pthread_mutex_unlock(&m_mtxVector);
+    }
 
     //获取首个
     bool GetFirstValue(TVALUE &tvOut){
