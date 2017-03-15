@@ -8,6 +8,7 @@
 #include <sys/types.h>
 #include <list>
 #include <vector>
+#include <semaphore.h>
 
 using namespace std;
 
@@ -272,7 +273,12 @@ public:
     static string Utf82Unicode(string strUtf8);
     //参数 真正的unicode字符串
     static string Unicode2Utf8(string strUnicode);
-
+    //创建信号量
+    static sem_t *CreateSem(string strSemName, int iPermision);
+    static sem_t *CreateSem(int iPermision); // 随机名字
+    static sem_t *CreateSem(string strSemName); // 0644权限
+    static sem_t *CreateSem(); // 随机名字  0644权限
+    static void DeleteSem(sem_t *semPara, string strName);
 
 protected:
 private:

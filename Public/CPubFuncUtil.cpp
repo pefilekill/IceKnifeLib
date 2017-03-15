@@ -1365,3 +1365,27 @@ bool CPubFunc::CloseSocket(SOCKET &sock) {
     sock = 0;
     return false;
 }
+
+sem_t *CPubFunc::CreateSem(string strSemName, int iPermision) {
+    // IOS上必须这种写法
+    sem_t *pRet = sem_open(strSemName.c_str(),O_CREAT, iPermision, 1) ;
+    return pRet;
+}
+
+sem_t *CPubFunc::CreateSem(int iPermision) {
+    return CreateSem(GetRandString(32), iPermision);
+}
+sem_t *CPubFunc::CreateSem(string strSemName) {
+    return CreateSem(strSemName, 0644);
+}
+sem_t *CPubFunc::CreateSem() {
+    return CreateSem(GetRandString(32), 0644);
+}
+
+void CPubFunc::DeleteSem(sem_t *semPara, string strName) {
+    sem_close(semPara);
+    sem_unlink(strName.c_str());
+}
+
+
+
