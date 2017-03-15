@@ -77,6 +77,12 @@ public:
         }
         pthread_mutex_unlock(&m_mtxVector);
     }
+    //删除全部
+    void RemoveAll(){
+        pthread_mutex_lock(&m_mtxVector);
+        m_vecData.clear();
+        pthread_mutex_unlock(&m_mtxVector);
+    }
 
 private:
     //
