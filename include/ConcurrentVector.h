@@ -21,6 +21,12 @@ public:
     ~ConcurrentVector() {
         pthread_mutex_destroy(&m_mtxVector);
     }
+    // 重载  只读
+    TVALUE operator[] (int iIndex){
+        TVALUE tvRet;
+        GetValueAt(iIndex, tvRet);  //加锁依赖GetValueAt中的保证
+        return tvRet;
+    }
 
     //插入
     void Insert(TVALUE tvPara) {
