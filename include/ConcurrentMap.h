@@ -23,6 +23,11 @@ public:
     ~ConcurrentMap() {
         pthread_mutex_destroy(&m_mtxMap);
     }
+    //
+    TVALUE operator [] (TKEY tkPara){
+        return GetValue(tkPara);
+    }
+
     //是否包含
     bool IsExist(TKEY keyCheck){
         bool bExist = false;
