@@ -74,6 +74,13 @@ public:
         pthread_mutex_unlock(&m_mtxMap);
         return ;
     }
+    //
+    void RemoveAll(){
+        pthread_mutex_lock(&m_mtxMap);
+        m_vecKey.clear();
+        m_vecValue.clear();
+        pthread_mutex_unlock(&m_mtxMap);
+    }
 
 private:
     //
