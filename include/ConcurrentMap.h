@@ -28,11 +28,19 @@ public:
         return GetValue(tkPara);
     }
 
-    //是否包含
-    bool IsExist(TKEY keyCheck){
+    //是否包含 key
+    bool ContainsKey(TKEY keyCheck){
         bool bExist = false;
         pthread_mutex_lock(&m_mtxMap);
         bExist = (find(m_vecKey.begin(), m_vecKey.end(), keyCheck) != m_vecKey.end());
+        pthread_mutex_unlock(&m_mtxMap);
+        return bExist;
+    }
+    // 是否包含value
+    bool ContainsValue(TVALUE tvPara){
+        bool bExist = false;
+        pthread_mutex_lock(&m_mtxMap);
+        bExist = (find(m_vecValue.begin(), m_vecValue.end(), tvPara) != m_vecValue.end());
         pthread_mutex_unlock(&m_mtxMap);
         return bExist;
     }
@@ -47,7 +55,7 @@ public:
         pthread_mutex_unlock(&m_mtxMap);
     }
 
-    //读取
+    //读取 值
     TVALUE GetValue(TKEY keyPara) {
         pthread_mutex_lock(&m_mtxMap);
         auto atSearch = find(m_vecKey.begin(), m_vecKey.end(), keyPara);
@@ -56,7 +64,15 @@ public:
         pthread_mutex_unlock(&m_mtxMap);
         return atValue;
     }
-
+    //读取key
+    TKEY GetKey(TVALUE tvPara) {
+        pthread_mutex_lock(&m_mtxMap);
+        auto atSearch = find(m_vecValue.begin(), m_vecValue.end(), tvPara);
+        int iSub = atSearch - m_vecValue.begin(); //这里可能会有波浪线  不影响
+        auto atKey = m_vecKey[iSub];
+        pthread_mutex_unlock(&m_mtxMap);
+        return atKey;
+    }
     // 获取大小
     int GetSize() {
         return m_vecKey.size();
