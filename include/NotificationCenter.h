@@ -27,7 +27,7 @@ public:
     template <typename TMsgData>
     static void PostMessage(string strObserverKey, TMsgData pData){
         //直接创建线程
-        if (m_mapTable.IsExist(strObserverKey)){
+        if (m_mapTable.ContainsKey(strObserverKey)){
             ST_Notification *pStNoti = new ST_Notification();
             pStNoti->m_strRespObserverKey = strObserverKey;
             pStNoti->m_pData = pData;
