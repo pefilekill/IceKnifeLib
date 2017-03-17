@@ -26,7 +26,6 @@ public:
     ~CAnyList() {
         Free();
 
-
     }
 
     template<typename TVAUE>
@@ -42,6 +41,13 @@ public:
             string strParaType = typeid(tvPara).name();
             CPubFunc::PrintString("不支持的类型:" + strParaType);
         }
+    }
+    // 删除所有的
+    void RemoveAll(){
+        Free();
+        m_mapData.RemoveAll();
+        m_mapTypeTable.RemoveAll();
+        m_iIndex = 0;
     }
 
     // 释放已知类型
