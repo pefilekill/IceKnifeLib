@@ -167,5 +167,5 @@ set(SOURCE_FILES
 
 
         include/NotificationCenter.h
-        include/ST_Notification.h include/CAnyList.h)
+        include/ST_Notification.h include/CAnyList.h include/CBaseTypeUtil.h Public/CBaseTypeUtil.cpp)
 add_library(IceKnifeLib ${SOURCE_FILES})
