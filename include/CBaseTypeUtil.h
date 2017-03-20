@@ -11,6 +11,7 @@
 #define ICEKNIFELIB_CBASETYPEUTIL_H
 
 #include <string>
+#include "LVcDefine.h"
 
 using namespace std;
 
@@ -19,8 +20,12 @@ public:
     // 原始类型
     static int m_IntValue;
     static int *m_pIntValue;
+    static byte m_byteValue;
+    static byte* m_pByteValue;
+
     // 原始类型名字
-    static string m_strIntName, m_strPIntName;
+    static string m_strIntName, m_strPIntName,
+            m_strByteName, m_strPByteName;
 
 
     template <typename TVALUE>
@@ -45,6 +50,14 @@ public:
     static string GetTypeName(TVALUE tvPara) {
         string strParaName = typeid(tvPara).name();
         return strParaName;
+    }
+    template <typename TVALUE>   //是否是byte类型
+    static bool IsByte(TVALUE tvPara){
+        return GetTypeName(tvPara) == m_strByteName;
+    }
+    template <typename TVALUE>   //是否是byte 指针
+    static bool IsPByte(TVALUE tvPara){
+        return GetTypeName(tvPara) == m_strPByteName;
     }
 
 
