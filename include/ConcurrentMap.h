@@ -11,7 +11,6 @@
 #include <map>
 #include "CPubFuncUtil.h"
 
-using namespace std;
 
 template<typename TKEY, typename TVALUE>
 class ConcurrentMap {

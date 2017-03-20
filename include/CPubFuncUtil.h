@@ -10,7 +10,6 @@
 #include <vector>
 #include <semaphore.h>
 
-using namespace std;
 
 
 enum enumSysName {
@@ -39,21 +38,21 @@ public:
     };
 
     //获取程序目录
-    static string GetExeFolder();
+    static std::string GetExeFolder();
 
     //获取程序完整路径
-    static string GetExePath();
+    static std::string GetExePath();
 
-    static void PrintString(string strPara);
+    static void PrintString(std::string strPara);
 
     //字符串替换
-    static string Replace(string strOriData, string strKey, string strValue);
+    static std::string Replace(std::string strOriData, std::string strKey, std::string strValue);
 
     //替换一次
-    static string ReplaceOnce(string strOriData, string strKey, string strValue);
+    static std::string ReplaceOnce(std::string strOriData, std::string strKey, std::string strValue);
 
     //获取全部文件 dir路径默认不是 ／ 结尾
-    static list<string> GetAllFiles(string strDir);
+    static list<std::string> GetAllFiles(std::string strDir);
 
 #ifdef __OS_WINDOWS__
     //获取CSIDL_COMMON_APPDATA目录
@@ -107,68 +106,68 @@ public:
 #endif
 
     //获取文件md5  大写
-    static string GetFileMD5(string strFilePath);
+    static std::string GetFileMD5(std::string strFilePath);
 
     //获取缓冲区md5
-    static string GetBufferMD5(char *szDstBuf, int dwBufLen);
+    static std::string GetBufferMD5(char *szDstBuf, int dwBufLen);
 
     //获取临时目录
-    static string GetOurTempPath();
+    static std::string GetOurTempPath();
 
     //嵌套创建文件夹
-    static BOOL EnumCreateFolder(string strDir);
+    static BOOL EnumCreateFolder(std::string strDir);
 
     //
-    static DWORD GetFileSize(string strFilePath);
+    static DWORD GetFileSize(std::string strFilePath);
 
     //获取sha1
-    string GetFileSha1(string strFilePath);
+    std::string GetFileSha1(std::string strFilePath);
 
     //获取文件的text内容
-    static string ReadFileText(string strFlePath);
+    static std::string ReadFileText(std::string strFlePath);
 
-    static list<string> SplitByNewLine(string strRsc);
+    static list<std::string> SplitByNewLine(std::string strRsc);
 
     //
-    static string GetUUID();
+    static std::string GetUUID();
 
     //生成指定长度的随机字符串
-    static string GetRandString(int iLength);
+    static std::string GetRandString(int iLength);
 
     //生成随机数  参数为最大值
     static int GetRandValue(int iMaxValue = 0);
 
     //little endian 16
-    static string Int2LittleEndianHex(int iPara);
+    static std::string Int2LittleEndianHex(int iPara);
 
     //
-    static string Int2String(int iPara);
+    static std::string Int2String(int iPara);
 
     //
-    static string Int642String(INT64 iPara);
+    static std::string Int642String(INT64 iPara);
 
 
     //
-    static int String2Int(string strPara);
+    static int String2Int(std::string strPara);
 
-    static INT64 String2Int64(string strPara);
+    static INT64 String2Int64(std::string strPara);
 
-    static string str2HexStr(string strSrc);
+    static std::string str2HexStr(std::string strSrc);
 
-    static string HexStr2Str(string strhex);
+    static std::string HexStr2Str(std::string strhex);
 
     //将hex直接转换为内存
-    static string HexStr2StrMem(string strHex);
+    static std::string HexStr2StrMem(std::string strHex);
 
     //将ip字符串转换为字节
-    static string ConvertIpstr2IpByte(string strIp);
+    static std::string ConvertIpstr2IpByte(std::string strIp);
 
     //
-    static bool IsPortOpend(string strIp, int iPort);
+    static bool IsPortOpend(std::string strIp, int iPort);
 
-    static void DeleteAllFiles(string strDir);
+    static void DeleteAllFiles(std::string strDir);
 
-    static bool WriteString2File(string strWite, string strFilePath);
+    static bool WriteString2File(std::string strWite, std::string strFilePath);
 
 
     //等待
@@ -178,10 +177,10 @@ public:
     static INT64 currentTimeMillis();
 
     //获取格式化的时间 2014-10-11 09:24:14
-    static string GetFormatDate();
+    static std::string GetFormatDate();
 
     //
-    static void AppendBigendian(string &strSrc, DWORD dwValue);
+    static void AppendBigendian(std::string &strSrc, DWORD dwValue);
 
     //算术右移就是有符号位  逻辑右移就是直接右移
 
@@ -214,19 +213,19 @@ public:
 
 
     // 去掉协议头  加上 /
-    static string FormatUrl(string strUrl);
+    static std::string FormatUrl(std::string strUrl);
 
     //
-    static string GetHostFromeUrl(string strUrl);
+    static std::string GetHostFromeUrl(std::string strUrl);
 
     //
-    static bool ConnectServer(string strHost, int iPort, int &iOutSock);
+    static bool ConnectServer(std::string strHost, int iPort, int &iOutSock);
 
     // 设置超时时间  单位秒
     static void SetSocketSendTimeOut(SOCKET sockPara, int iTimeOut);
 
     //
-    static string Convert2Ip(string strPara);
+    static std::string Convert2Ip(std::string strPara);
 
     //
     static bool IsSocketClosed(int iSock);
@@ -235,50 +234,50 @@ public:
 
 
     //判断是否是ip
-    static bool IsIPAddress(string strPara);
+    static bool IsIPAddress(std::string strPara);
 
     //判断ip格式是否是v4
-    static bool IsIPV4(string strIp);
+    static bool IsIPV4(std::string strIp);
 
     //判断ip格式是否是v6
-    static bool IsIPV6(string strIp);
+    static bool IsIPV6(std::string strIp);
 
     //根据域名获取IP stirng
-    static string GetHostStringByName(string strDomainName);
+    static std::string GetHostStringByName(std::string strDomainName);
 
     //
-    static string GetUriFromUrl(string strUrl);
+    static std::string GetUriFromUrl(std::string strUrl);
 
     //获取头部
-    static string GetHeader(string strFullData);
+    static std::string GetHeader(std::string strFullData);
 
     //清理头部
-    static void ClearResultHeader(string &strSrcData);
+    static void ClearResultHeader(std::string &strSrcData);
 
     //清理chunk数据
-    static int ClearChunkedJunkData(string &strSrcData);
+    static int ClearChunkedJunkData(std::string &strSrcData);
 
     //判断是否gzip
-    static bool IsContentEncodeGzip(string strHeader);
+    static bool IsContentEncodeGzip(std::string strHeader);
 
     //
-    static int64_t String2Long(string strPara);
+    static int64_t String2Long(std::string strPara);
     //
-    static string MakeLower(string strSrc);
+    static std::string MakeLower(std::string strSrc);
     //
-    static string MakeUpper(string strSrc);
+    static std::string MakeUpper(std::string strSrc);
     //
-    static string GetRandNumber(int iNumLen);
+    static std::string GetRandNumber(int iNumLen);
     //参数  真正的utf8字符串
-    static string Utf82Unicode(string strUtf8);
+    static std::string Utf82Unicode(std::string strUtf8);
     //参数 真正的unicode字符串
-    static string Unicode2Utf8(string strUnicode);
+    static std::string Unicode2Utf8(std::string strUnicode);
     //创建信号量
-    static sem_t *CreateSem(string strSemName, int iPermision);
+    static sem_t *CreateSem(std::string strSemName, int iPermision);
     static sem_t *CreateSem(int iPermision); // 随机名字
-    static sem_t *CreateSem(string strSemName); // 0644权限
+    static sem_t *CreateSem(std::string strSemName); // 0644权限
     static sem_t *CreateSem(); // 随机名字  0644权限
-    static void DeleteSem(sem_t *semPara, string strName);
+    static void DeleteSem(sem_t *semPara, std::string strName);
 
 protected:
 private:
