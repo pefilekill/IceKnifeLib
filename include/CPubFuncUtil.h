@@ -52,7 +52,7 @@ public:
     static std::string ReplaceOnce(std::string strOriData, std::string strKey, std::string strValue);
 
     //获取全部文件 dir路径默认不是 ／ 结尾
-    static list<std::string> GetAllFiles(std::string strDir);
+    static std::list<std::string> GetAllFiles(std::string strDir);
 
 #ifdef __OS_WINDOWS__
     //获取CSIDL_COMMON_APPDATA目录
@@ -126,7 +126,7 @@ public:
     //获取文件的text内容
     static std::string ReadFileText(std::string strFlePath);
 
-    static list<std::string> SplitByNewLine(std::string strRsc);
+    static std::list<std::string> SplitByNewLine(std::string strRsc);
 
     //
     static std::string GetUUID();
