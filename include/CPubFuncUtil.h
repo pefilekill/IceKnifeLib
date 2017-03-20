@@ -10,7 +10,7 @@
 #include <vector>
 #include <semaphore.h>
 
-
+using namespace std;
 
 enum enumSysName {
     NAME_XP = 1,   //1

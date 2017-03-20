@@ -11,8 +11,9 @@
 #include <map>
 #include "CPubFuncUtil.h"
 
+using namespace std;
 
-template<typename TKEY, typename TVALUE>
+template<typename TKEY1, typename TVALUE>
 class ConcurrentMap {
 public:
     ConcurrentMap() {
@@ -23,12 +24,12 @@ public:
         pthread_mutex_destroy(&m_mtxMap);
     }
     //
-    TVALUE operator [] (TKEY tkPara){
+    TVALUE operator [] (TKEY1 tkPara){
         return GetValue(tkPara);
     }
 
     //是否包含 key
-    bool ContainsKey(TKEY keyCheck){
+    bool ContainsKey(TKEY1 keyCheck){
         bool bExist = false;
         pthread_mutex_lock(&m_mtxMap);
         bExist = (find(m_vecKey.begin(), m_vecKey.end(), keyCheck) != m_vecKey.end());
@@ -45,7 +46,7 @@ public:
     }
 
     //插入
-    void Insert(TKEY keyPara, TVALUE valuePara) {
+    void Insert(TKEY1 keyPara, TVALUE valuePara) {
         pthread_mutex_lock(&m_mtxMap);
         auto atKey = keyPara;
         auto atValue = valuePara;
@@ -55,7 +56,7 @@ public:
     }
 
     //读取 值
-    TVALUE GetValue(TKEY keyPara) {
+    TVALUE GetValue(TKEY1 keyPara) {
         pthread_mutex_lock(&m_mtxMap);
         auto atSearch = find(m_vecKey.begin(), m_vecKey.end(), keyPara);
         int iSub = atSearch - m_vecKey.begin(); //这里可能会有波浪线  不影响
@@ -64,7 +65,7 @@ public:
         return atValue;
     }
     //读取key
-    TKEY GetKey(TVALUE tvPara) {
+    TKEY1 GetKey(TVALUE tvPara) {
         pthread_mutex_lock(&m_mtxMap);
         auto atSearch = find(m_vecValue.begin(), m_vecValue.end(), tvPara);
         int iSub = atSearch - m_vecValue.begin(); //这里可能会有波浪线  不影响
@@ -85,7 +86,7 @@ public:
         return atRet;
     }
     // 移除
-    void Remove(TKEY keyPara){
+    void Remove(TKEY1 keyPara){
         pthread_mutex_lock(&m_mtxMap);
         auto atSearchKey = find(m_vecKey.begin(), m_vecKey.end(), keyPara);
         auto atSearchValue = atSearchKey - m_vecKey.begin() + m_vecValue.begin(); //这里可能会有波浪线  不影响
@@ -106,8 +107,8 @@ private:
     //
     pthread_mutex_t m_mtxMap;
     //值
-    vector<TKEY> m_vecKey;
-    vector<TVALUE> m_vecValue;
+    std::vector<TKEY1> m_vecKey;
+    std::vector<TVALUE> m_vecValue;
 };
 
 
