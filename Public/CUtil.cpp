@@ -3,7 +3,6 @@
 #include <sys/timeb.h>
 #include "CUtil.h"
 
-#pragma comment(lib, "zlib.lib")
 
 #define CHUNK 16384
 #define windowBits 15

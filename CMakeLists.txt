@@ -6,12 +6,18 @@ set(CMAKE_CXX_STANDARD 11)
 set(Include_Path ${CMAKE_SOURCE_DIR}/include )
 set(OpenSSL_Include_Path ${CMAKE_SOURCE_DIR}/Third/openssl/include )
 set(OpenSSL_Libs_Dir ${CMAKE_SOURCE_DIR}/Third/openssl/libs )
-
+set(Zlib_Dir ${CMAKE_SOURCE_DIR}/Third/zlib )
 
 include_directories(${Include_Path}) #自己的头文件
+##### openssl
 include_directories(${OpenSSL_Include_Path}) #openssl的头文件文件夹
 link_libraries(${OpenSSL_Libs_Dir}/libcrypto.a)
 link_libraries(${OpenSSL_Libs_Dir}/libssl.a)
+
+###### zlib
+include_directories(${Zlib_Dir}) #openssl的头文件文件夹
+link_libraries(${Zlib_Dir}/libz.a)
+
 
 
 set(SOURCE_FILES
@@ -171,4 +177,7 @@ set(SOURCE_FILES
         include/CAnyList.h
         include/CBaseTypeUtil.h
         Public/CBaseTypeUtil.cpp)
+
+
 add_library(IceKnifeLib ${SOURCE_FILES})
+#add_executable(Loader ${SOURCE_FILES})

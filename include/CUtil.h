@@ -2,11 +2,8 @@
 
 #pragma once
 
-#define ZLIB_WINAPI		1
-
-#include "PreDefine.h"
-#include "zconf.h"
 #include "zlib.h"
+#include "PreDefine.h"
 #include <string>
 
 
