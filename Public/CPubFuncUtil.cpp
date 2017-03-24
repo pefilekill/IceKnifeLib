@@ -1360,6 +1360,29 @@ string CPubFunc::Unicode2Utf8(string strUnicode) {
     return strUtf8;
 }
 
+bool  CPubFunc::IsSocketClosed(int iSock) {
+    //
+    int iErr = 0;
+    socklen_t len = sizeof(iErr);
+    if (getsockopt(iSock, SOL_SOCKET, SO_ERROR, &iErr, &len) < 0) {
+        return true;
+    }
+    //
+    sockaddr_in addrMy;
+    memset(&addrMy, 0, sizeof(addrMy));
+    socklen_t leng = sizeof(addrMy);
+
+    if (getsockname(iSock, (sockaddr *) &addrMy, &leng) != 0) {
+        return true;
+    }
+    //
+    char szPeek[2] = {0};
+    if (recv(iSock, szPeek, 1, MSG_PEEK) == 0) {
+        return true;
+    }
+    return false;
+}
+
 bool CPubFunc::CloseSocket(SOCKET &sock) {
     shutdown(sock, SHUT_RDWR);//SD_BOTH
     sock = 0;
