@@ -1144,7 +1144,7 @@ bool CPubFunc::ConnectServer(string strHost, int iPort, int &iOutSock) {
         serv_addr.sin_family = AF_INET;
         serv_addr.sin_addr.s_addr = inet_addr(strIp.c_str());
         serv_addr.sin_port = htons(iPort);
-        SetSocketSendTimeOut(iOutSock, 2);
+        //SetSocketSendTimeOut(iOutSock, 2);
         if (connect(iOutSock, (struct sockaddr *) &serv_addr, sizeof(serv_addr)) < 0) {
             PrintString("连接失败-----0");
             return false;
@@ -1160,7 +1160,7 @@ bool CPubFunc::ConnectServer(string strHost, int iPort, int &iOutSock) {
         serv_addr.sin6_addr = addrV6;
         serv_addr.sin6_port = htons(iPort);
         //设置超时时间
-        SetSocketSendTimeOut(iOutSock, 2);
+        //SetSocketSendTimeOut(iOutSock, 2);
         if (connect(iOutSock, (struct sockaddr *) &serv_addr, sizeof(serv_addr)) < 0) {
             PrintString("连接失败-----1");
             return false;
