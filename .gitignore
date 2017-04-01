@@ -4,3 +4,5 @@
 *.ipl
 build
 cmake-build-debug
+/.vs
+/Debug

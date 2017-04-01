@@ -8,16 +8,6 @@
 #include "json.h"
 
 
-// 路径的分隔符定义
-#ifdef __WIN32
-#define SEPARATOR "\\"
-#define __OS_WINDOWS__
-#else
-#define SEPARATOR "/"
-
-#include "LVcDefine.h"
-#endif
-
 typedef Json::Value     _JsonValue;
 typedef Json::Reader    _JsonReader;
 typedef Json::FastWriter     _JsonFastWriter;

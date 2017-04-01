@@ -1,11 +1,11 @@
-//
+﻿//
 // Created by ice on 16/7/13.
 // http请求
 //
 
 #ifndef IMSDK_CHTTP_H
 #define IMSDK_CHTTP_H
-
+#include <WinSock2.h>
 #include <string>
 
 using namespace std;
@@ -50,7 +50,7 @@ private:
     bool Send(string strData, string &strRecv);
 
     //socket
-    int m_iSock;
+    SOCKET m_iSock;
 
 };
 

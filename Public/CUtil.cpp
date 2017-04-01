@@ -1,8 +1,8 @@
-
+﻿
 #include <time.h>
 #include <sys/timeb.h>
 #include "CUtil.h"
-
+#include <Windows.h>
 
 #define CHUNK 16384
 #define windowBits 15

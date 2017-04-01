@@ -1,4 +1,4 @@
-
+ï»¿
 #pragma once
 #include <string>
 
@@ -9,11 +9,11 @@ class CRsaUtil
 public:
 	static string	CompleteRSAPrivateKey(string strPublicKey);
 	static string	CompleteRSAPublicKey(string strPublicKey);
-	//RSA  Ë½Ô¿¼ÓÃÜ
+	//RSA  Ë½Ô¿ï¿½ï¿½ï¿½ï¿½
 	static	bool	RSA_Private_Encode(string &strKey, string& strData, int iStepLen, string &strOut);
 	static	string	RSA_Private_Decode(string &strKey, string& strData);
 	//
-	//¹«Ô¿
+	//ï¿½ï¿½Ô¿
 	static bool		RSA_Public_Encode(string &strKey, string& strData, int iStepLen, string &strOut);
 	static bool		RSA_Public_Decode(string &strKey, string& strData, int iStepLen, string &strOut);
 	//ecb Ä£Ê½

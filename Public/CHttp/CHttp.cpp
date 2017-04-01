@@ -1,13 +1,8 @@
-//
+﻿//
 // Created by ice on 16/7/13.
 //
 
 #include "CHttp.h"
-#include <sys/socket.h>
-#include <netinet/in.h>
-#include <netdb.h>
-#include <arpa/inet.h>
-#include <unistd.h>
 #include <stdlib.h>
 #include <regex>
 #include "CPubFuncUtil.h"
@@ -154,7 +149,7 @@ int CHttp::CalcContentLength(string strHeader) {
             if (iPos2 > iPos1) {
                 string strConLen = strHeader.substr(iPos1 + iKeyContentLengthSize, iPos2 - iPos1 - iKeyContentLengthSize);
                 strConLen = CPubFunc::Replace(strConLen, " ", "");
-                iLen = CPubFunc::String2Long(strConLen);
+                iLen = (int) CPubFunc::String2Long(strConLen);
             }
         }
     }
@@ -177,7 +172,7 @@ bool CHttp::Send(string strData, string &strRecv) {
         struct timeval delayval;
         int lRetVal;
 
-        long lStartTime = time(NULL);
+        long lStartTime = (long)time(NULL);
         int iFullContengLength = 0 , iRecvedDataLen = 0;
         string strTempHeader = "";
 
@@ -215,7 +210,7 @@ bool CHttp::Send(string strData, string &strRecv) {
                         }
                     }
                     //  数据接收完整的判断    防止某些服务端sb,Close状态下仍socket不断开的情况
-                    if (iFullContengLength <= iRecvedDataLen - strTempHeader.length() && iFullContengLength != 0) {
+                    if (iFullContengLength <= (iRecvedDataLen - (int)strTempHeader.length()) && iFullContengLength != 0) {
                         break;
                     }
 
@@ -228,7 +223,7 @@ bool CHttp::Send(string strData, string &strRecv) {
         }
         bRet = true;
     }
-    close(m_iSock);
+	CPubFunc::CloseSocket(m_iSock);// close(m_iSock);
     return bRet;
 }
 
@@ -236,14 +231,14 @@ bool CHttp::Send(string strData, string &strRecv) {
 bool  CHttp::IsSocketClosed(int iSock) {
     //
     int iErr = 0;
-    socklen_t len = sizeof(iErr);
-    if (getsockopt(iSock, SOL_SOCKET, SO_ERROR, &iErr, &len) < 0) {
+    int len = sizeof(iErr);
+    if (getsockopt(iSock, SOL_SOCKET, SO_ERROR, (char*)&iErr, &len) < 0) {
         return true;
     }
     //
     sockaddr_in addrMy;
     memset(&addrMy, 0, sizeof(addrMy));
-    socklen_t leng = sizeof(addrMy);
+    int leng = sizeof(addrMy);
 
     if (getsockname(iSock, (sockaddr *) &addrMy, &leng) != 0) {
         return true;
